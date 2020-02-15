@@ -1,12 +1,9 @@
-package CucumberTestHucs;
+package CucumberTestHucs.example;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.junit.Ignore;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.Given;
@@ -15,13 +12,7 @@ import io.cucumber.java.en.When;
 
 import static org.junit.Assert.*;
 
-
-class IsItFriday {
-    static String isItFriday(String today) {
-        return "Friday".equals(today) ? "TGIF" : "Nope";
-    }
-}
-
+@Ignore
 public class StepDefinitions {
     private String today;
     private String actualAnswer;
@@ -84,4 +75,10 @@ public class StepDefinitions {
     }
 
 
+}
+
+class IsItFriday {
+    static String isItFriday(String today) {
+        return "Friday".equals(today) ? "TGIF" : "Nope";
+    }
 }
