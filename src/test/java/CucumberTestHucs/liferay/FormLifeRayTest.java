@@ -1,10 +1,12 @@
 package CucumberTestHucs.liferay;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -19,15 +21,34 @@ public class FormLifeRayTest {
         this.formLifeRay = new FormLifeRay(driver);
     }
 
-    @When("o formulario for aberto")
-    public void o_formulario_for_aberto() {
-        formLifeRay.abre();
+    @After
+    public void after() {
+        formLifeRay.close();
     }
 
-    @Then("apresentara o nome {string}")
-    public void apresentara_o_nome(String string) {
-        Assert.assertEquals(string, formLifeRay.obterTextoByTag("h4"));
-        formLifeRay.fecha();
+    @When("this form to get open")
+    public void thisFormToGetOpen() {
+        formLifeRay.acess();
+    }
+
+    @Then("shows this text {string}")
+    public void showsTitle(String string) {
+        Assert.assertEquals(string, formLifeRay.getTextByTag("h4"));
+    }
+
+    @Given("this form is open")
+    public void thisFormIsOpen() {
+        formLifeRay.acess();
+    }
+
+    @When("the form is submitted")
+    public void formSubmited() {
+        formLifeRay.clickSubmitButton();
+    }
+
+    @Then("will show this message {string}")
+    public void showsErrorMessage(String string) {
+        Assert.assertEquals(string,formLifeRay.getFeedbackFieldName());
     }
 
 }

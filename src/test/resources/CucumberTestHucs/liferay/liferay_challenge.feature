@@ -1,7 +1,12 @@
 Feature: LifeRay Challenge
-  desafio da liferay
+  This is an instrumentation of automated test for liferay challenge
 
-  Scenario: O formulario apresenta o titulo Let's party rock.
-    When o formulario for aberto
-    Then apresentara o nome "Let's party rock."
+  Scenario: This form have a cool title Let's party rock.
+    When this form to get open
+    Then shows this text "Let's party rock."
+
+  Scenario: All fields are mandatory
+    Given this form is open
+    When the form is submitted
+    Then will show this message "This field is required."
 
