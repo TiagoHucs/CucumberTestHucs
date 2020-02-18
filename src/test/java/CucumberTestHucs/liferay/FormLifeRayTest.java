@@ -55,7 +55,7 @@ public class FormLifeRayTest {
 
     @Then("will show success message {string}")
     public void showsSuccessMessage(String string) {
-        Assert.assertEquals(string,formLifeRay.getFeedbackFieldName());
+        Assert.assertEquals(string, formLifeRay.getTextByTag("h5"));
     }
 
     @Given("we fill all mandatory fields")

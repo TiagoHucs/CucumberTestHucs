@@ -27,7 +27,10 @@ public class FormLifeRay {
 
     public FormLifeRay(WebDriver driver) {
         this.driver = driver;
-        this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        this.driver.manage()
+                .timeouts()
+                .pageLoadTimeout(10, TimeUnit.SECONDS)
+                .implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void acess() {
@@ -53,20 +56,21 @@ public class FormLifeRay {
     public void fillName(String name) {
         WebElement element = driver.findElement(By.xpath(INPUT_FIELD_NAME));
         element.sendKeys(name);
-        element.getAttribute("value");
+        System.out.println("");
+
     }
 
     public void fillDate(String date) {
        WebElement element = driver.findElement(By.xpath(INPUT_FIELD_DATE));
        element.sendKeys(Keys.HOME);
        element.sendKeys(date);
-       element.getAttribute("value");
+        System.out.println("");
     }
 
     public void fillTextArea(String text) {
         WebElement element = driver.findElement(By.xpath(INPUT_FIELD_TEXT));
         element.sendKeys(text);
-        element.getAttribute("value");
+        System.out.println("");
     }
    
   }

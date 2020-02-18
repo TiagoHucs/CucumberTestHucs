@@ -14,5 +14,5 @@ Feature: LifeRay Challenge
     Given this form is open
     And we fill all mandatory fields
     When the form is submitted
-    Then will show success message "Form submited."
+    Then will show success message "Informações enviadas com sucesso!"
 
