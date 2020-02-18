@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class FormLifeRayTest {
@@ -18,6 +19,7 @@ public class FormLifeRayTest {
     @Before
     public void setup() {
         WebDriver driver = new ChromeDriver();
+        //WebDriver driver = new FirefoxDriver();
         this.formLifeRay = new FormLifeRay(driver);
     }
 
@@ -49,6 +51,18 @@ public class FormLifeRayTest {
     @Then("will show this message {string}")
     public void showsErrorMessage(String string) {
         Assert.assertEquals(string,formLifeRay.getFeedbackFieldName());
+    }
+
+    @Then("will show success message {string}")
+    public void showsSuccessMessage(String string) {
+        Assert.assertEquals(string,formLifeRay.getFeedbackFieldName());
+    }
+
+    @Given("we fill all mandatory fields")
+    public void we_fill_all_mandatory_fields() {
+        formLifeRay.fillName("Tiago S. Hucs");
+        formLifeRay.fillDate("12121981");
+        formLifeRay.fillTextArea("Por que eu gosto de tecnologia");
     }
 
 }

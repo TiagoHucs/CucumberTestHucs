@@ -1,16 +1,24 @@
 package CucumberTestHucs.liferay;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.xml.stream.events.Attribute;
+import java.lang.reflect.Type;
+import java.security.Key;
 import java.util.concurrent.TimeUnit;
 
 public class FormLifeRay {
 
-   static String FEEDBACK_FIELD_NAME = "//*[contains(text(),'Qual é o seu nome?')]/following-sibling::div";
+    static String FEEDBACK_FIELD_NAME = "//*[contains(text(),'Qual é o seu nome?')]/following-sibling::div";
+    static String INPUT_FIELD_NAME = "//*[contains(text(),'Qual é o seu nome?')]/following-sibling::input";
+    static String INPUT_FIELD_DATE = "//*[contains(text(),'Qual é a data do seu nascimento?')]/following-sibling::div/div/input";
+    static String INPUT_FIELD_TEXT = "//*[contains(text(),'Porque você ingressou na área de testes?')]/following-sibling::textarea";
+
 
     private static String URL_FORM = "https://forms.liferay.com/web/forms/shared/-/form/122548";
 
@@ -38,8 +46,27 @@ public class FormLifeRay {
         return driver.findElement(By.xpath(FEEDBACK_FIELD_NAME)).getText();
     }
 
-    public void clickSubmitButton(){
-        driver.findElement(By.cssSelector(".lfr-ddm-form-submit")).click();
+    public void clickSubmitButton() {
+        driver.findElement(By.tagName("form")).submit();
     }
 
-}
+    public void fillName(String name) {
+        WebElement element = driver.findElement(By.xpath(INPUT_FIELD_NAME));
+        element.sendKeys(name);
+        element.getAttribute("value");
+    }
+
+    public void fillDate(String date) {
+       WebElement element = driver.findElement(By.xpath(INPUT_FIELD_DATE));
+       element.sendKeys(Keys.HOME);
+       element.sendKeys(date);
+       element.getAttribute("value");
+    }
+
+    public void fillTextArea(String text) {
+        WebElement element = driver.findElement(By.xpath(INPUT_FIELD_TEXT));
+        element.sendKeys(text);
+        element.getAttribute("value");
+    }
+   
+  }

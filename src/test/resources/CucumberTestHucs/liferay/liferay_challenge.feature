@@ -10,3 +10,9 @@ Feature: LifeRay Challenge
     When the form is submitted
     Then will show this message "This field is required."
 
+  Scenario: Its possible submit form with all fields ok
+    Given this form is open
+    And we fill all mandatory fields
+    When the form is submitted
+    Then will show success message "Form submited."
+
