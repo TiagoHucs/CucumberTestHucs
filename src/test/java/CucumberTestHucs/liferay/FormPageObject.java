@@ -1,31 +1,31 @@
 package CucumberTestHucs.liferay;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-import javax.xml.stream.events.Attribute;
-import java.lang.reflect.Type;
-import java.security.Key;
 import java.util.concurrent.TimeUnit;
 
-public class FormLifeRay {
+import static CucumberTestHucs.TestUtil.sleep;
+import static CucumberTestHucs.TestUtil.waitForLoad;
 
-    static String FEEDBACK_FIELD_NAME = "//*[contains(text(),'Qual é o seu nome?')]/following-sibling::div";
+public class FormPageObject {
+
     static String INPUT_FIELD_NAME = "//*[contains(text(),'Qual é o seu nome?')]/following-sibling::input";
-    static String INPUT_FIELD_DATE = "//*[contains(text(),'Qual é a data do seu nascimento?')]/following-sibling::div/div/input";
-    static String INPUT_FIELD_TEXT = "//*[contains(text(),'Porque você ingressou na área de testes?')]/following-sibling::textarea";
+    static String FEEDBACK_FIELD_NAME = "//*[contains(text(),'Qual é o seu nome?')]/following-sibling::div";
 
+    static String INPUT_FIELD_DATE = "//*[contains(text(),'Qual é a data do seu nascimento?')]/following-sibling::div/div/input";
+    static String FEEDBACK_FIELD_DATE = "//*[contains(text(),'Qual é a data do seu nascimento?')]/following-sibling::div[2]/div";
+
+    static String INPUT_FIELD_TEXT = "//*[contains(text(),'Porque você ingressou na área de testes?')]/following-sibling::textarea";
+    static String FEEDBACK_FIELD_TEXT = "//*[contains(text(),'Porque você ingressou na área de testes?')]/following-sibling::div";
 
     private static String URL_FORM = "https://forms.liferay.com/web/forms/shared/-/form/122548";
 
     private WebDriver driver;
-    private WebDriverWait wait;
 
-    public FormLifeRay(WebDriver driver) {
+    public FormPageObject(WebDriver driver) {
         this.driver = driver;
         this.driver.manage()
                 .timeouts()
@@ -49,28 +49,38 @@ public class FormLifeRay {
         return driver.findElement(By.xpath(FEEDBACK_FIELD_NAME)).getText();
     }
 
-    public void clickSubmitButton() {
-        driver.findElement(By.tagName("form")).submit();
+    public String getFeedbackFieldDate() {
+        return driver.findElement(By.xpath(FEEDBACK_FIELD_DATE)).getText();
+    }
+
+    public String getFeedbackFieldText() {
+        return driver.findElement(By.xpath(FEEDBACK_FIELD_TEXT)).getText();
     }
 
     public void fillName(String name) {
         WebElement element = driver.findElement(By.xpath(INPUT_FIELD_NAME));
         element.sendKeys(name);
-        System.out.println("");
-
+        sleep();
     }
 
     public void fillDate(String date) {
        WebElement element = driver.findElement(By.xpath(INPUT_FIELD_DATE));
        element.sendKeys(Keys.HOME);
        element.sendKeys(date);
-        System.out.println("");
+       sleep();
     }
 
     public void fillTextArea(String text) {
         WebElement element = driver.findElement(By.xpath(INPUT_FIELD_TEXT));
         element.sendKeys(text);
-        System.out.println("");
+        sleep();
     }
+
+    public void clickSubmitButton() {
+        driver.findElement(By.tagName("form")).submit();
+        sleep();
+        waitForLoad(driver);
+    }
+
    
   }
