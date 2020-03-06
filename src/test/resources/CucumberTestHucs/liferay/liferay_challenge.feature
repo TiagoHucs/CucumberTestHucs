@@ -5,12 +5,14 @@ Feature: LifeRay Challenge
     When this form to get open
     Then shows this text "Let's party rock."
 
+  @Ignore
   Scenario: All fields are mandatory
     Given this form is open
     When the form is submitted
     Then will show this message "This field is required."
 
-  Scenario o: Its possible submit form with all fields ok
+  @Ignore
+  Scenario: Its possible submit form with all fields ok
     Given this form is open
     And we fill all mandatory fields
     When the form is submitted
